@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheatCode Macros</title>
+<meta name="description" content="CheatCode shows what to order at 43 fast food and sit-down chains for your calories and protein, with the exact steps to order it. Real numbers from each chain, not AI guesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a clean white page with wide all-caps headings. Two 3D phones up top, a leaning phone that
+   turns as you scroll beside the list of points, moving food rows, three phones on black, a checklist chart, FAQ. */
+@property --dir { syntax: '<number>'; inherits: true; initial-value: 1; }
+:root {
+  color-scheme: light;
+  --page: #ffffff;
+  --line: #e7e7ea;
+  --ink: #0d0e11;
+  --soft: #5b606b;
+  --blue: #1f6fe0;
+  --protein: #4c9dff;
+  --carbs: #ff7a59;
+  --fat: #7ce38b;
+  --green: #23873f;
+  --lift: 0 1px 2px rgba(17,19,24,0.05), 0 12px 32px rgba(17,19,24,0.08);
+  --display: "Archivo", "Arial Black", "Helvetica Neue", sans-serif;
+  --body: "DM Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--page); scroll-behavior: smooth; }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.center { text-align: center; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+h1, h2, h3, .mark { font-family: var(--display); font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.02em; margin: 0; text-wrap: balance; }
+h1 { font-weight: 900; font-size: clamp(25px, 6.4vw, 62px); line-height: 1.02; }
+h1 em { font-style: normal; color: var(--blue); white-space: nowrap; }
+h2 { font-weight: 900; font-size: clamp(23px, 4.4vw, 46px); line-height: 1.04; }
+h3 { font-weight: 800; font-size: 17px; line-height: 1.2; }
+.sub { color: var(--soft); max-width: 34em; margin: 14px auto 0; }
+
+.bar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+.mark { font-weight: 900; font-size: 20px; text-decoration: none; }
+.pill { font-size: 15px; font-weight: 700; text-decoration: none; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--page); }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-weight: 700; font-size: 17px; text-decoration: none; padding: 16px 28px; border-radius: 14px; transition: transform 0.2s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn.light { background: #fff; color: var(--ink); }
+.btn svg { flex: none; }
+
+/* Opener */
+.hero { text-align: center; padding: 34px 0 0; }
+.proof { font-size: 16px; margin: 0 0 18px; }
+.proof b { font-weight: 700; font-variant-numeric: tabular-nums; }
+.hero .btn { margin-top: 24px; }
+.fine { font-size: 14px; color: var(--soft); margin: 14px 0 0; }
+.p3d { perspective: 1700px; }
+.phone { container-type: inline-size; position: relative; --dir: 1; }
+.phone .body { position: relative; background: #0a0a0c; border: 0.7cqw solid #55575e; border-radius: 15cqw; padding: 3cqw;
+  box-shadow: calc(var(--dir) * 0.8cqw) 0 0 #6a6c73, calc(var(--dir) * 1.6cqw) 0 0 #53555b, calc(var(--dir) * 2.4cqw) 0 0 #3c3e43, calc(var(--dir) * 3.2cqw) 0 0 #26272b, calc(var(--dir) * 9cqw) 12cqw 20cqw rgba(13,14,17,0.24); }
+.phone img { width: 100%; border-radius: 11.6cqw; }
+.phone .isle { position: absolute; left: 50%; top: 6.4cqw; width: 26cqw; height: 7.4cqw; translate: -50% 0; border-radius: 99px; background: #000; }
+.duo { position: relative; max-width: 660px; height: clamp(390px, 66vw, 600px); margin: 44px auto 0; }
+.duo .phone { position: absolute; width: 45%; will-change: transform; }
+.duo .back { --dir: 1; right: 7%; top: 0; transform: translateX(calc(var(--t, 0.3) * 26px)) rotateY(-24deg) rotateX(8deg) rotateZ(7deg); }
+.duo .front { --dir: -1; left: 9%; top: 11%; transform: translateX(calc(var(--t, 0.3) * -26px)) rotateY(20deg) rotateX(6deg) rotateZ(-5deg); }
+.hero { overflow: hidden; }
+.tag { position: absolute; z-index: 2; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--lift); padding: 10px 14px; text-align: left; font-size: 14px; line-height: 1.3; white-space: nowrap; }
+.tag b { display: block; font-size: 17px; font-variant-numeric: tabular-nums; }
+.tag.one { left: 0; top: 46%; }
+.tag.two { right: 0; top: 30%; }
+.match { display: inline-block; background: #e4f8e8; color: var(--green); font-weight: 700; font-size: 13px; padding: 2px 9px; border-radius: 999px; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--protein); margin-right: 5px; }
+
+/* Moving food rows */
+.show { padding: 64px 0 30px; border-top: 1px solid var(--line); }
+.rowlabel { max-width: 1120px; margin: 34px auto 0; padding: 0 20px; color: var(--soft); font-size: 15px; }
+.rowlabel span { color: var(--ink); font-weight: 700; margin-right: 8px; }
+.belt { overflow: hidden; padding: 14px 0 34px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.track { display: flex; gap: 16px; width: max-content; }
+.card { flex: 0 0 204px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--lift); padding: 12px 16px 18px; text-align: left; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(17,19,24,0.06), 0 22px 44px rgba(17,19,24,0.14); }
+.card img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.card small { display: block; color: var(--soft); font-size: 13px; margin-top: 6px; }
+.card h3 { font-family: var(--body); font-stretch: normal; text-transform: none; letter-spacing: 0; font-size: 16px; font-weight: 700; line-height: 1.25; margin: 2px 0 10px; min-height: 2.5em; }
+.card p { margin: 0; font-size: 15px; color: var(--soft); }
+.card p b { color: var(--ink); font-size: 19px; font-variant-numeric: tabular-nums; }
+
+/* Phone with points */
+.how { padding: 76px 0; border-top: 1px solid var(--line); overflow: hidden; }
+.pair { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+.stand { padding: 20px 0; }
+.lean { --dir: -1; width: min(330px, 82%); margin: 0 auto; will-change: transform; transform: rotateY(26deg) rotateX(6deg) rotateZ(-4deg); }
+.icons { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 30px; }
+.icons li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 20px; align-items: start; }
+.icons svg { margin-top: 2px; }
+.icons p { margin: 6px 0 0; color: var(--soft); }
+
+/* Three phones on black */
+.band { background: #000; color: #fff; padding: 84px 0 0; text-align: center; overflow: hidden; }
+.band h2 { font-size: clamp(34px, 7vw, 76px); }
+.kicker { font-family: var(--display); font-stretch: 125%; text-transform: uppercase; font-weight: 800; letter-spacing: 0.02em; font-size: clamp(14px, 2.2vw, 22px); color: #d6d8de; margin: 12px 0 26px; }
+.band .btn { border-radius: 999px; text-transform: uppercase; font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 15px; letter-spacing: 0.03em; padding: 18px 34px; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5%; max-width: 980px; margin: 64px auto -16%; align-items: start; }
+.three .phone { will-change: transform; }
+.three .phone .body { box-shadow: calc(var(--dir) * 0.8cqw) 0 0 #6a6c73, calc(var(--dir) * 1.6cqw) 0 0 #53555b, calc(var(--dir) * 2.4cqw) 0 0 #3c3e43, calc(var(--dir) * 3.2cqw) 0 0 #26272b; }
+.three .left { --dir: -1; transform: translateY(calc(8% - var(--t, 0.5) * 8%)) rotateY(34deg) rotateX(8deg) rotateZ(-9deg); }
+.three .mid { --dir: 0; transform: translateY(calc(var(--t, 0.5) * -6%)); }
+.three .right { --dir: 1; transform: translateY(calc(8% - var(--t, 0.5) * 8%)) rotateY(-34deg) rotateX(8deg) rotateZ(9deg); }
+
+/* Checklist chart */
+.versus { padding: 84px 0 100px; }
+.cmp { position: relative; max-width: 1000px; margin: 84px auto 0; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--lift); }
+.cmp .r { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr; align-items: stretch; position: relative; }
+.cmp .r + .r > * { border-top: 1px solid var(--line); }
+.cmp .r + .r > .us { border-top-color: rgba(255,255,255,0.09); }
+.cmp .f { display: grid; align-content: center; }
+.cmp .f { padding: 22px 18px 22px 30px; }
+.cmp .f b { display: block; font-size: 19px; line-height: 1.25; }
+.cmp .f span:not(.vh) { display: block; color: var(--soft); font-size: 15px; margin-top: 4px; }
+.cmp .c { padding: 18px 10px; text-align: center; display: grid; justify-items: center; align-content: center; gap: 7px; position: relative; }
+.cmp .c em { display: none; font-style: normal; }
+.cmp .c small { color: var(--soft); font-size: 13px; line-height: 1.25; }
+.cmp .head .c { font-weight: 700; font-size: 16px; padding: 24px 10px 20px; }
+.cmp .head .us { font-family: var(--display); font-stretch: 125%; text-transform: uppercase; font-weight: 900; font-size: 21px; letter-spacing: 0.02em; color: #fff; }
+.cmp .us { color: #fff; }
+.cmp .pop { position: absolute; left: calc(36.17% - 10px); width: calc(21.28% + 20px); top: -34px; bottom: -34px; border-radius: 30px;
+  background: linear-gradient(180deg, #2a2c34 0%, #131419 38%, #0d0e11 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 2px 0 #34363e, 0 4px 0 #2f3138, 0 6px 0 #2a2c33, 0 8px 0 #25272d, 0 10px 0 #202227, 0 12px 0 #1b1c21, 0 14px 0 #16171b,
+    0 30px 30px rgba(13,14,17,0.28), 0 70px 90px rgba(13,14,17,0.36); }
+.cmp i { font-style: normal; font-weight: 700; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 17px; line-height: 1; }
+.cmp i.yes { background: #dff5e4; color: var(--green); }
+.cmp i.no { background: #fde9e7; color: #c5392f; }
+.cmp i.mid { background: #fff1d6; color: #9a6a00; }
+.cmp .us i.yes { background: var(--fat); color: #0d3317; width: 50px; height: 50px; font-size: 25px; box-shadow: 0 0 0 6px rgba(124,227,139,0.18), 0 8px 18px rgba(124,227,139,0.35); }
+.cmp .total .f b { font-family: var(--display); font-stretch: 125%; text-transform: uppercase; font-size: 16px; letter-spacing: 0.02em; }
+.cmp .total strong { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.cmp .total strong span { font-size: 18px; opacity: 0.6; }
+.cmp .total .them strong { color: #9a9ea8; }
+.cmp .total .us strong { color: var(--fat); font-size: 44px; }
+.cmp .total .c { padding: 26px 10px; }
+.note { font-size: 14px; color: var(--soft); max-width: 940px; margin: 76px auto 0; text-align: center; }
+
+.chains { padding: 64px 0; border-top: 1px solid var(--line); text-align: center; }
+.chains p { color: var(--soft); max-width: 46em; margin: 18px auto 0; }
+.chains strong { color: var(--ink); font-weight: 500; }
+.legal { padding: 64px 0; border-top: 1px solid var(--line); }
+.legal dl { margin: 34px auto 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 40px; max-width: 900px; }
+.legal dt { font-weight: 700; }
+.legal dd { margin: 4px 0 0; color: var(--soft); font-size: 16px; }
+.faq { padding: 64px 0; border-top: 1px solid var(--line); }
+.faq .qs { max-width: 760px; margin: 34px auto 0; }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; font-weight: 700; position: relative; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 50%; translate: 0 -50%; font-size: 26px; font-weight: 400; line-height: 1; transition: rotate 0.25s ease; }
+details[open] summary::after { rotate: 45deg; }
+details p { margin: 0 0 22px; color: var(--soft); max-width: 40em; }
+.cta { background: var(--ink); color: #fff; text-align: center; padding: 80px 0; }
+.cta .btn { margin-top: 26px; }
+footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 820px) {
+  body { font-size: 17px; }
+  .tag { display: none; }
+  .duo .phone { width: 50%; }
+  .duo .back { right: 3%; } .duo .front { left: 4%; }
+  .how { padding: 54px 0; }
+  .pair { grid-template-columns: 1fr; gap: 26px; }
+  .lean { width: 58%; }
+  .band { padding-top: 60px; }
+  .three { gap: 3%; margin-top: 44px; }
+  .versus { padding: 54px 0; }
+  .show { padding: 48px 0 8px; }
+  .card { flex-basis: 172px; }
+  .rowlabel span { display: block; }
+  .legal dl { grid-template-columns: 1fr; }
+  .chains, .legal, .faq { padding: 54px 0; }
+  .cmp { margin-top: 60px; border-radius: 22px; }
+  .cmp .r { grid-template-columns: 1.55fr 1fr 1fr 1fr; }
+  .cmp .f { padding: 16px 8px 16px 14px; }
+  .cmp .f b { font-size: 14px; }
+  .cmp .f span:not(.vh) { display: none; }
+  .cmp .c { padding: 14px 3px; gap: 5px; }
+  .cmp .c small { font-size: 10.5px; }
+  .cmp .head .c { font-size: 11.5px; line-height: 1.2; padding: 16px 2px 14px; }
+  .cmp .head .us { font-size: 9px; letter-spacing: 0; }
+  .cmp .pop { left: calc(34.07% - 4px); width: calc(21.98% + 8px); top: -18px; bottom: -18px; border-radius: 20px; }
+  .cmp i { width: 28px; height: 28px; font-size: 14px; }
+  .cmp .us i.yes { width: 36px; height: 36px; font-size: 18px; box-shadow: 0 0 0 4px rgba(124,227,139,0.18); }
+  .cmp .total .f b { font-size: 12px; }
+  .cmp .total strong { font-size: 22px; }
+  .cmp .total .us strong { font-size: 30px; }
+  .cmp .total strong span { font-size: 13px; }
+  .cmp .total .c { padding: 20px 2px; }
+  .note { margin-top: 50px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .duo .phone { animation: bob 6s ease-in-out infinite alternate; }
+  .lean { animation: swing 4.5s cubic-bezier(.45,0,.55,1) infinite alternate, bob 6s ease-in-out infinite alternate; }
+  @keyframes swing { from { transform: rotateY(-36deg) rotateX(7deg) rotateZ(5deg); --dir: 1.3; } to { transform: rotateY(36deg) rotateX(7deg) rotateZ(-5deg); --dir: -1.3; } }
+  .duo .front { animation-delay: -3s; }
+  @keyframes bob { from { translate: 0 0; } to { translate: 0 -12px; } }
+  .track { animation: belt 70s linear infinite; }
+  .belt.rev .track { animation-direction: reverse; animation-duration: 56s; }
+  .belt:hover .track { animation-play-state: paused; }
+  @keyframes belt { to { transform: translateX(calc(-50% - 8px)); } }
+  .tag { animation: pop 0.6s cubic-bezier(.2,1.4,.4,1) 0.9s both; }
+  .tag.two { animation-delay: 1.3s; }
+  @keyframes pop { from { opacity: 0; transform: scale(0.6) translateY(10px); } }
+  .js .rv { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--d, 0) * 0.1s); }
+  .js .rv.in { opacity: 1; transform: none; }
+  .js .cmp i, .js .cmp .total strong { transform: scale(0); transition: transform 0.45s cubic-bezier(.2,1.5,.4,1); transition-delay: calc(var(--i, 0) * 0.12s + 0.2s); }
+  .js .cmp.in i, .js .cmp.in .total strong { transform: none; }
+  .js .cmp .pop { transform: scale(0.82); opacity: 0; transition: transform 0.8s cubic-bezier(.2,1.3,.3,1), opacity 0.4s ease; }
+  .js .cmp.in .pop { transform: none; opacity: 1; animation: hover3d 4s ease-in-out 1s infinite alternate; }
+  @keyframes hover3d { to { translate: 0 -8px; } }
+  .js .cmp.in .us > * { animation: hover3d 4s ease-in-out 1s infinite alternate; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .belt { overflow-x: auto; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">CheatCode</a>
+    <a class="pill" href="https://testflight.apple.com/join/54qmHqed">Get the beta</a>
+  </header>
+</div></div>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="proof"><b>43</b> chains · <b>13,300</b> menu items · <b>204</b> cheat codes</p>
+      <h1>The <em>cheat code</em><br>for eating out</h1>
+      <p class="sub">Pick a restaurant. Get orders that hit your calories and protein, with the exact words to say. Real numbers from each chain, not AI guesses.</p>
+      <a class="btn" href="https://testflight.apple.com/join/54qmHqed">Get the beta on TestFlight</a>
+      <p class="fine">iPhone, iOS 17 or later. Free during the beta.</p>
+      <div class="duo p3d" data-tilt>
+        <div class="tag one" aria-hidden="true"><span class="match">95% match</span></div>
+        <div class="tag two" aria-hidden="true"><b>620 kcal</b><span class="dot"></span>53g protein</div>
+        <div class="phone back"><div class="body"><img src="restaurant.jpg" alt="A restaurant page in CheatCode with cheat codes and regular menu items" width="660" height="1434"><span class="isle"></span></div></div>
+        <div class="phone front"><div class="body"><img src="home.jpg" alt="CheatCode home screen: the three closest restaurants, your meal target, and orders that match it" width="660" height="1434"><span class="isle"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="wrap pair">
+      <div class="stand p3d">
+        <div class="phone lean"><div class="body"><img src="order.jpg" alt="An order page with its photo, macros and ordering steps" width="660" height="1434" loading="lazy"><span class="isle"></span></div></div>
+      </div>
+      <div>
+        <h2 class="rv">Two ways to order at every restaurant</h2>
+        <ul class="icons">
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><div><h3>Cheat codes</h3><p>Custom orders built from the regular menu to hit your numbers</p></div></li>
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg><div><h3>Straight off the menu</h3><p>Regular items with nothing to change, ranked for your meal</p></div></li>
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><div><h3>A match percent on everything</h3><p>See how close each order lands to your calories and protein</p></div></li>
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg><div><h3>Lighter or tastier in one tap</h3><p>Drop the sauce to save calories, or add it back when you have room</p></div></li>
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.800 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><div><h3>The three closest places</h3><p>On the first screen, with the drive time</p></div></li>
+        <li class="rv"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"/><path d="M5 19c3-5 6-8 10-10"/></svg><div><h3>Works with how you eat</h3><p>Keto, vegetarian, high protein and low fat picks at every chain</p></div></li>
+      </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="show">
+    <div class="wrap center rv">
+      <h2>Food you actually want to eat</h2>
+      <p class="sub">Real orders from the app, with the real numbers.</p>
+    </div>
+    <p class="rowlabel"><span>Cheat codes</span> Custom orders built to hit your numbers</p>
+    <div class="belt"><div class="track">
+        <article class="card"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="Chicken Bacon Ranch Mac from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
+        <article class="card"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="Quad Bacon Cheeseburger Bowl from Burger King" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
+        <article class="card"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="Double Barbacoa Salad from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
+        <article class="card"><img src="food/arbys-meat-mountain-bowl.jpg" alt="Meat Mountain Bowl from Arby&#x27;s" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="Double Grilled Lettuce Wrap from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
+        <article class="card"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="Triple Bacon Burger Bowl from Five Guys" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
+        <article class="card"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="Crispy Steak Tacos from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="Chicken &amp; Egg Scramble Bowl from Dairy Queen" width="420" height="420" loading="lazy"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
+        <article class="card"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="Double Grilled Southwest Bowl from Jack in the Box" width="420" height="420" loading="lazy"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="Buffalo Chicken Mac Bowl from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
+        <article class="card"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="Double Steak Queso Fajita Bowl from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="Sweet Heat Grilled Kale Salad from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/arbys-meat-mountain-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
+      </div></div>
+    <p class="rowlabel"><span>Straight off the menu</span> Regular items, nothing to change</p>
+    <div class="belt rev"><div class="track">
+        <article class="card"><img src="food/mcdon-big-mac.jpg" alt="Big Mac from McDonald&#x27;s" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Big Mac</h3><p><b>580</b> kcal<br><span class="dot"></span>25g protein</p></article>
+        <article class="card"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="Chicken Sandwich from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
+        <article class="card"><img src="food/pand-the-original-orange-chicken.jpg" alt="The Original Orange Chicken from Panda Express" width="420" height="420" loading="lazy"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
+        <article class="card"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="Double Quarter Pounder with Cheese from McDonald&#x27;s" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
+        <article class="card"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="Spicy Chicken Sandwich from Popeyes" width="420" height="420" loading="lazy"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
+        <article class="card"><img src="food/arbys-classic-roast-beef.jpg" alt="Classic Roast Beef from Arby&#x27;s" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
+        <article class="card"><img src="food/five-little-bacon-cheeseburger.jpg" alt="Little Bacon Cheeseburger from Five Guys" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="Sourdough Breakfast Sandwich from Dunkin&#x27;" width="420" height="420" loading="lazy"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
+        <article class="card"><img src="food/burg-double-whopper.jpg" alt="Double Whopper from Burger King" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/mcdon-big-mac.jpg" alt="" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Big Mac</h3><p><b>580</b> kcal<br><span class="dot"></span>25g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/pand-the-original-orange-chicken.jpg" alt="" width="420" height="420" loading="lazy"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="" width="420" height="420" loading="lazy"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/arbys-classic-roast-beef.jpg" alt="" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/five-little-bacon-cheeseburger.jpg" alt="" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="" width="420" height="420" loading="lazy"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/burg-double-whopper.jpg" alt="" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
+      </div></div>
+  </section>
+
+  <section class="band">
+    <div class="wrap center">
+      <h2 class="rv">Order smarter</h2>
+      <p class="kicker">The menu doesn't change. Your order does.</p>
+      <a class="btn light" href="https://testflight.apple.com/join/54qmHqed">Get the beta</a>
+      <div class="three p3d" data-tilt>
+        <div class="phone left"><div class="body"><img src="home.jpg" alt="Home screen with the closest restaurants and matching orders" width="660" height="1434" loading="lazy"><span class="isle"></span></div></div>
+        <div class="phone mid"><div class="body"><img src="restaurant.jpg" alt="A restaurant page with cheat codes and regular menu items" width="660" height="1434" loading="lazy"><span class="isle"></span></div></div>
+        <div class="phone right"><div class="body"><img src="order.jpg" alt="An order page with macros and ordering steps" width="660" height="1434" loading="lazy"><span class="isle"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="versus">
+    <div class="wrap center">
+      <div class="rv">
+        <h2>The only one that<br>checks every box</h2>
+        <p class="sub">CheatCode next to AI menu apps and calorie trackers.</p>
+      </div>
+      <div class="cmp rv" role="table" aria-label="CheatCode compared with AI menu apps and calorie trackers">
+        <div class="pop" aria-hidden="true"></div>
+        <div class="r head" role="row"><div class="f" role="columnheader"><span class="vh">Feature</span></div><div class="c us" role="columnheader">CheatCode</div><div class="c them" role="columnheader">AI menu apps</div><div class="c them" role="columnheader">Calorie trackers</div></div>
+        <div class="r" role="row" style="--i:0"><div class="f" role="rowheader"><b>Numbers straight from the chain</b><span>Calories and macros from each chain&#x27;s own nutrition guide</span></div><div class="c us" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">AI menu apps</em><small>AI estimates</small></div><div class="c them" role="cell"><i class="mid" aria-hidden="true">~</i><span class="vh">Partly</span><em aria-hidden="true">Calorie trackers</em><small>Mixed entries</small></div></div>
+        <div class="r" role="row" style="--i:1"><div class="f" role="rowheader"><b>Menus open instantly</b><span>No waiting while a menu gets generated</span></div><div class="c us" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">AI menu apps</em><small>Made while you wait</small></div><div class="c them" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">Calorie trackers</em></div></div>
+        <div class="r" role="row" style="--i:2"><div class="f" role="rowheader"><b>No account, no tracking</b><span>Nothing to sign up for and nothing following you around</span></div><div class="c us" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">AI menu apps</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">Calorie trackers</em></div></div>
+        <div class="r" role="row" style="--i:3"><div class="f" role="rowheader"><b>Tells you what to order</b><span>Picks ranked for your calories and protein</span></div><div class="c us" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">AI menu apps</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">Calorie trackers</em></div></div>
+        <div class="r" role="row" style="--i:4"><div class="f" role="rowheader"><b>Custom orders, with the words to say</b><span>204 cheat codes with step-by-step ordering</span></div><div class="c us" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><i class="yes" aria-hidden="true">✓</i><span class="vh">Yes</span><em aria-hidden="true">AI menu apps</em></div><div class="c them" role="cell"><i class="no" aria-hidden="true">✕</i><span class="vh">No</span><em aria-hidden="true">Calorie trackers</em></div></div>
+        <div class="r total" role="row" style="--i:5"><div class="f" role="rowheader"><b>Boxes checked</b></div><div class="c us" role="cell"><strong>5<span>/5</span></strong><em aria-hidden="true">CheatCode</em></div><div class="c them" role="cell"><strong>2<span>/5</span></strong><em aria-hidden="true">AI menu apps</em></div><div class="c them" role="cell"><strong>1<span>/5</span></strong><em aria-hidden="true">Calorie trackers</em></div></div>
+      </div>
+      <p class="note">Based on the most popular AI menu apps and calorie trackers on the App Store, November 2026.</p>
+    </div>
+  </section>
+
+  <section class="chains">
+    <div class="wrap">
+      <h2 class="rv">Chains in the app</h2>
+      <p><strong>McDonald's, Chick-fil-A, Chipotle, Taco Bell, Wendy's, Popeyes, Starbucks, Subway, Burger King, Raising Cane's, Panera, In-N-Out, Five Guys, Wingstop, Dunkin', Panda Express, Jersey Mike's, Jimmy John's, KFC, Whataburger, Shake Shack, Chili's, Applebee's, Olive Garden, Texas Roadhouse</strong> and 18 more.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="privacy">
+    <div class="wrap">
+      <h2 class="center rv">No ads. No tracking.</h2>
+      <dl>
+        <div><dt>The short version</dt><dd>CheatCode has no accounts and no ads. What you enter stays on your phone. We do not collect it, sell it or share it.</dd></div>
+        <div><dt>Location</dt><dd>If you allow it, the app uses your location to show restaurants near you. The search runs through Apple Maps on your device. We do not receive or keep your location.</dd></div>
+        <div><dt>Apple Health</dt><dd>If you turn it on, the app reads your latest body weight to keep your targets right. It reads nothing else and writes nothing.</dd></div>
+        <div><dt>Tracking</dt><dd>None. No advertising, no third-party analytics, no tracking across other apps or websites.</dd></div>
+        <div><dt>Not medical advice</dt><dd>CheatCode gives general nutrition information. Restaurants change recipes and portions, so confirm with the restaurant, especially for allergies.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2 class="center rv">Questions</h2>
+      <div class="qs">
+        <details><summary>Where do the numbers come from?</summary><p>From the nutrition guide each chain publishes. Every menu in the app shows the date we last checked it. If part of a custom order had to be estimated, that part is marked.</p></details>
+        <details><summary>What is a cheat code?</summary><p>A custom order built from the regular menu, like a burger in a lettuce wrap with an extra patty. The app gives you the exact words to say and the calories, protein, carbs and fat for the finished order.</p></details>
+        <details><summary>Which restaurants are in the app?</summary><p>43 chains today, fast food and sit-down, from McDonald&#x27;s and Chick-fil-A to Chili&#x27;s and Texas Roadhouse. More are added as we check their numbers.</p></details>
+        <details><summary>Is it free?</summary><p>It is free while it is in beta on TestFlight.</p></details>
+        <details><summary>Is there an Android app?</summary><p>Not yet. CheatCode is on iPhone only for now.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2 class="rv">Eat out.<br>Stay on your numbers.</h2>
+      <a class="btn light" href="https://testflight.apple.com/join/54qmHqed">Get the beta on TestFlight</a>
+    </div>
+  </section>
+</main>
+<div class="wrap">
+  <footer>
+    <span>CheatCode Macros, by Pocket Era</span>
+    <span>CheatCode is not affiliated with any restaurant. Restaurant names belong to their owners. Food images are illustrations.</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (calm || !('IntersectionObserver' in window)) return;
+  root.classList.add('js');
+  var seen = new IntersectionObserver(function (items) {
+    items.forEach(function (it) {
+      if (!it.isIntersecting) return;
+      it.target.classList.add('in'); seen.unobserve(it.target);
+      it.target.querySelectorAll('[data-n]').forEach(count);
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.rv').forEach(function (el) { seen.observe(el); });
+  var tilts = [].slice.call(document.querySelectorAll('[data-tilt]')), queued = false;
+  function tilt() {
+    queued = false;
+    var vh = innerHeight;
+    tilts.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var t = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+      el.style.setProperty('--t', t.toFixed(3));
+    });
+  }
+  addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
+  addEventListener('resize', tilt); tilt();
+  function count(el) {
+    var end = +el.dataset.n, t0 = performance.now();
+    (function tick(t) {
+      var k = Math.min(1, (t - t0) / 1100), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+      el.textContent = v.toLocaleString('en-US');
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+})();
+</script>
+</body>
+</html>
