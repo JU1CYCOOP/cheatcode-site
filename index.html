@@ -172,6 +172,8 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   .duo .back { right: 3%; } .duo .front { left: 4%; }
   .how { padding: 54px 0; }
   .pair { grid-template-columns: 1fr; gap: 26px; }
+  /* Phones: the words come first here, so this moving phone is not stacked right under the two at the top. */
+  .pair > .stand { order: 2; }
   .lean { width: 58%; }
   .band { padding-top: 60px; }
   .three { gap: 3%; margin-top: 44px; }
