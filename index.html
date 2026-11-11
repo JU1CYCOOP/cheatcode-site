@@ -171,6 +171,12 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   body { font-size: 17px; }
   .duo .phone { width: 50%; }
   .duo .back { right: 3%; } .duo .front { left: 4%; }
+  /* Phones: the two tilted phones at the top hold still. In Safari their tilted planes cut through each other while they
+     bobbed and slid with the scroll, which flickered. Each gets its own perspective and a fixed place in the stack. */
+  .duo.p3d { perspective: none; }
+  .duo .phone { animation: none !important; will-change: auto; translate: none; }
+  .duo .back { z-index: 1; transform: perspective(1500px) rotateY(-24deg) rotateX(8deg) rotateZ(7deg); }
+  .duo .front { z-index: 2; transform: perspective(1500px) rotateY(20deg) rotateX(6deg) rotateZ(-5deg); }
   .how { padding: 54px 0; }
   .pair { grid-template-columns: 1fr; gap: 26px; }
   /* Phones: the words come first here, so this moving phone is not stacked right under the two at the top. */
