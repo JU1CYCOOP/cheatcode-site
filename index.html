@@ -43,7 +43,7 @@ h1 { font-weight: 900; font-size: clamp(25px, 6.4vw, 62px); line-height: 1.02; }
 h1 em { font-style: normal; white-space: nowrap; display: inline-block; padding: 0.04em 0.16em 0.02em; margin: 0 -0.04em 0.06em; background: var(--fat); border-radius: 0.14em; }
 h2 { font-weight: 900; font-size: clamp(23px, 4.4vw, 46px); line-height: 1.04; }
 h3 { font-weight: 800; font-size: 17px; line-height: 1.2; }
-.sub { color: var(--soft); max-width: 34em; margin: 14px auto 0; }
+.sub { color: var(--soft); max-width: 34em; margin: 14px auto 0; text-wrap: balance; }
 
 .bar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
@@ -57,6 +57,7 @@ header.top { display: flex; align-items: center; justify-content: space-between;
 /* Opener */
 .hero { text-align: center; padding: 34px 0 0; }
 .proof { font-size: 16px; margin: 0 0 18px; }
+.narrow { display: none; }
 .proof b { font-weight: 700; font-variant-numeric: tabular-nums; }
 .hero .btn { margin-top: 24px; }
 .fine { font-size: 14px; color: var(--soft); margin: 14px 0 0; }
@@ -178,6 +179,15 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   .show { padding: 48px 0 8px; }
   .card { flex-basis: 172px; }
   .rowlabel span { display: block; }
+  /* Phones: less text at the top, and the food rows are plain rows you swipe. A moving row this wide came up blank on iPhone. */
+  .wide { display: none; }
+  .narrow { display: inline; }
+  .proof { margin-bottom: 12px; }
+  .belt { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; padding-left: 20px; padding-right: 20px; scroll-snap-type: x proximity; }
+  .belt::-webkit-scrollbar { display: none; }
+  .belt .track { animation: none !important; transform: none !important; }
+  .belt .card { scroll-snap-align: start; }
+  .belt .card[aria-hidden="true"] { display: none; }
   .chains, .legal, .faq { padding: 54px 0; }
   .cmp { margin-top: 60px; border-radius: 22px; }
   .cmp .r { grid-template-columns: 1.55fr 1fr 1fr 1fr; }
@@ -234,9 +244,9 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="proof"><b>43</b> chains · <b>13,300</b> menu items · <b>204</b> cheat codes</p>
+      <p class="proof"><b>43</b> chains<span class="wide"> · <b>12,900</b> menu items</span> · <b>290</b> cheat codes</p>
       <h1>The <em>cheat code</em><br>for eating out</h1>
-      <p class="sub">Pick a restaurant and get orders that fit your calories and protein. Every number comes from the restaurant's own nutrition data or the USDA. No AI guessing.</p>
+      <p class="sub"><span class="wide">Pick a restaurant and get orders that fit your calories and protein. Every number comes from the restaurant's own nutrition data or the USDA. No AI guessing.</span><span class="narrow">Orders that fit your calories and protein. We don't guess.</span></p>
       <a class="btn" href="https://testflight.apple.com/join/54qmHqed">Get the beta on TestFlight</a>
       <p class="fine">iPhone, iOS 17 or later. Free during the beta.</p>
       <div class="duo p3d" data-tilt>
