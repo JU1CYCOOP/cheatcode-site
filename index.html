@@ -81,9 +81,10 @@ header.top { display: flex; align-items: center; justify-content: space-between;
 .rowlabel span { color: var(--ink); font-weight: 700; margin-right: 8px; }
 .belt { overflow: hidden; padding: 14px 0 34px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
 .track { display: flex; gap: 16px; width: max-content; }
-.card { flex: 0 0 204px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--lift); padding: 12px 16px 18px; text-align: left; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+/* A set width, not only a flex basis: Safari sized the row from each picture's full 420px and left half the loop empty. */
+.card { flex: none; width: 204px; min-width: 0; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--lift); padding: 12px 16px 18px; text-align: left; transition: transform 0.25s ease, box-shadow 0.25s ease; }
 .card:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(17,19,24,0.06), 0 22px 44px rgba(17,19,24,0.14); }
-.card img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.card img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
 .card small { display: block; color: var(--soft); font-size: 13px; margin-top: 6px; }
 .card h3 { font-family: var(--body); font-stretch: normal; text-transform: none; letter-spacing: 0; font-size: 16px; font-weight: 700; line-height: 1.25; margin: 2px 0 10px; min-height: 2.5em; }
 .card p { margin: 0; font-size: 15px; color: var(--soft); }
@@ -179,17 +180,16 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   .three { gap: 3%; margin-top: 44px; }
   .versus { padding: 54px 0; }
   .show { padding: 48px 0 8px; }
-  .card { flex-basis: 172px; }
+  .card { width: 172px; }
   .rowlabel span { display: block; }
-  /* Phones: less text at the top, and the food rows are plain rows you swipe. A moving row this wide came up blank on iPhone. */
+  /* Phones: less text at the top. The food rows still move on their own, but as real scrolling rows (the script at the
+     bottom nudges them along and you can swipe them), because one very wide sliding layer came up blank on iPhone. */
   .wide { display: none; }
   .narrow { display: inline; }
   .proof { margin-bottom: 12px; }
-  .belt { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; padding-left: 20px; padding-right: 20px; scroll-snap-type: x proximity; }
+  .belt { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; }
   .belt::-webkit-scrollbar { display: none; }
   .belt .track { animation: none !important; transform: none !important; }
-  .belt .card { scroll-snap-align: start; }
-  .belt .card[aria-hidden="true"] { display: none; }
   .chains, .legal, .faq { padding: 54px 0; }
   .cmp { margin-top: 60px; border-radius: 22px; }
   .cmp .r { grid-template-columns: 1.55fr 1fr 1fr 1fr; }
@@ -284,49 +284,49 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
     </div>
     <p class="rowlabel"><span>Cheat codes</span> Our custom orders, built to hit your numbers</p>
     <div class="belt"><div class="track">
-        <article class="card"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="Chicken Bacon Ranch Mac from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
-        <article class="card"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="Quad Bacon Cheeseburger Bowl from Burger King" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
-        <article class="card"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="Double Barbacoa Salad from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
-        <article class="card"><img src="food/arbys-meat-mountain-bowl.jpg" alt="Meat Mountain Bowl from Arby&#x27;s" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
-        <article class="card"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="Double Grilled Lettuce Wrap from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
-        <article class="card"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="Triple Bacon Burger Bowl from Five Guys" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
-        <article class="card"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="Crispy Steak Tacos from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
-        <article class="card"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="Chicken &amp; Egg Scramble Bowl from Dairy Queen" width="420" height="420" loading="lazy"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
-        <article class="card"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="Double Grilled Southwest Bowl from Jack in the Box" width="420" height="420" loading="lazy"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
-        <article class="card"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="Buffalo Chicken Mac Bowl from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
-        <article class="card"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="Double Steak Queso Fajita Bowl from Chipotle" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
-        <article class="card"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="Sweet Heat Grilled Kale Salad from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/arbys-meat-mountain-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="" width="420" height="420" loading="lazy"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="Chicken Bacon Ranch Mac from Chick-fil-A" width="420" height="420"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
+        <article class="card"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="Quad Bacon Cheeseburger Bowl from Burger King" width="420" height="420"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
+        <article class="card"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="Double Barbacoa Salad from Chipotle" width="420" height="420"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
+        <article class="card"><img src="food/arbys-meat-mountain-bowl.jpg" alt="Meat Mountain Bowl from Arby&#x27;s" width="420" height="420"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="Double Grilled Lettuce Wrap from Chick-fil-A" width="420" height="420"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
+        <article class="card"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="Triple Bacon Burger Bowl from Five Guys" width="420" height="420"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
+        <article class="card"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="Crispy Steak Tacos from Chipotle" width="420" height="420"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="Chicken &amp; Egg Scramble Bowl from Dairy Queen" width="420" height="420"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
+        <article class="card"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="Double Grilled Southwest Bowl from Jack in the Box" width="420" height="420"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="Buffalo Chicken Mac Bowl from Chick-fil-A" width="420" height="420"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
+        <article class="card"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="Double Steak Queso Fajita Bowl from Chipotle" width="420" height="420"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
+        <article class="card"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="Sweet Heat Grilled Kale Salad from Chick-fil-A" width="420" height="420"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-chicken-bacon-ranch-mac.jpg" alt="" width="420" height="420"><small>Chick-fil-A</small><h3>Chicken Bacon Ranch Mac</h3><p><b>620</b> kcal<br><span class="dot"></span>53g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/burger-king-quad-bacon-cheeseburger-bowl.jpg" alt="" width="420" height="420"><small>Burger King</small><h3>Quad Bacon Cheeseburger Bowl</h3><p><b>560</b> kcal<br><span class="dot"></span>44g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-double-barbacoa-salad.jpg" alt="" width="420" height="420"><small>Chipotle</small><h3>Double Barbacoa Salad</h3><p><b>500</b> kcal<br><span class="dot"></span>57g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/arbys-meat-mountain-bowl.jpg" alt="" width="420" height="420"><small>Arby&#x27;s</small><h3>Meat Mountain Bowl</h3><p><b>697</b> kcal<br><span class="dot"></span>63g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-double-grilled-club-lettuce-wrap.jpg" alt="" width="420" height="420"><small>Chick-fil-A</small><h3>Double Grilled Lettuce Wrap</h3><p><b>385</b> kcal<br><span class="dot"></span>51g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/five-guys-triple-bacon-burger-bowl.jpg" alt="" width="420" height="420"><small>Five Guys</small><h3>Triple Bacon Burger Bowl</h3><p><b>524</b> kcal<br><span class="dot"></span>34g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-crispy-steak-bean-tacos.jpg" alt="" width="420" height="420"><small>Chipotle</small><h3>Crispy Steak Tacos</h3><p><b>515</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/dairy-queen-chicken-egg-scramble-bowl.jpg" alt="" width="420" height="420"><small>Dairy Queen</small><h3>Chicken &amp; Egg Scramble Bowl</h3><p><b>510</b> kcal<br><span class="dot"></span>45g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/jack-in-the-box-double-grilled-southwest-bowl.jpg" alt="" width="420" height="420"><small>Jack in the Box</small><h3>Double Grilled Southwest Bowl</h3><p><b>580</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-buffalo-chicken-mac-bowl.jpg" alt="" width="420" height="420"><small>Chick-fil-A</small><h3>Buffalo Chicken Mac Bowl</h3><p><b>495</b> kcal<br><span class="dot"></span>50g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chipotle-double-steak-queso-fajita-bowl.jpg" alt="" width="420" height="420"><small>Chipotle</small><h3>Double Steak Queso Fajita Bowl</h3><p><b>480</b> kcal<br><span class="dot"></span>49g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chick-fil-a-sweet-heat-grilled-kale-salad.jpg" alt="" width="420" height="420"><small>Chick-fil-A</small><h3>Sweet Heat Grilled Kale Salad</h3><p><b>397</b> kcal<br><span class="dot"></span>42g protein</p></article>
       </div></div>
     <p class="rowlabel"><span>Straight off the menu</span> Regular items, as they come or with a small change</p>
     <div class="belt rev"><div class="track">
-        <article class="card"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="Chicken Sandwich from Chick-fil-A" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
-        <article class="card"><img src="food/pand-the-original-orange-chicken.jpg" alt="The Original Orange Chicken from Panda Express" width="420" height="420" loading="lazy"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
-        <article class="card"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="Double Quarter Pounder with Cheese from McDonald&#x27;s" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
-        <article class="card"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="Spicy Chicken Sandwich from Popeyes" width="420" height="420" loading="lazy"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
-        <article class="card"><img src="food/arbys-classic-roast-beef.jpg" alt="Classic Roast Beef from Arby&#x27;s" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
-        <article class="card"><img src="food/five-little-bacon-cheeseburger.jpg" alt="Little Bacon Cheeseburger from Five Guys" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
-        <article class="card"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="Sourdough Breakfast Sandwich from Dunkin&#x27;" width="420" height="420" loading="lazy"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
-        <article class="card"><img src="food/burg-double-whopper.jpg" alt="Double Whopper from Burger King" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="" width="420" height="420" loading="lazy"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/pand-the-original-orange-chicken.jpg" alt="" width="420" height="420" loading="lazy"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="" width="420" height="420" loading="lazy"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="" width="420" height="420" loading="lazy"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/arbys-classic-roast-beef.jpg" alt="" width="420" height="420" loading="lazy"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/five-little-bacon-cheeseburger.jpg" alt="" width="420" height="420" loading="lazy"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="" width="420" height="420" loading="lazy"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
-        <article class="card" aria-hidden="true"><img src="food/burg-double-whopper.jpg" alt="" width="420" height="420" loading="lazy"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="Chicken Sandwich from Chick-fil-A" width="420" height="420"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
+        <article class="card"><img src="food/pand-the-original-orange-chicken.jpg" alt="The Original Orange Chicken from Panda Express" width="420" height="420"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
+        <article class="card"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="Double Quarter Pounder with Cheese from McDonald&#x27;s" width="420" height="420"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
+        <article class="card"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="Spicy Chicken Sandwich from Popeyes" width="420" height="420"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
+        <article class="card"><img src="food/arbys-classic-roast-beef.jpg" alt="Classic Roast Beef from Arby&#x27;s" width="420" height="420"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
+        <article class="card"><img src="food/five-little-bacon-cheeseburger.jpg" alt="Little Bacon Cheeseburger from Five Guys" width="420" height="420"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="Sourdough Breakfast Sandwich from Dunkin&#x27;" width="420" height="420"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
+        <article class="card"><img src="food/burg-double-whopper.jpg" alt="Double Whopper from Burger King" width="420" height="420"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/chic-chick-fil-a-chicken-sandwich.jpg" alt="" width="420" height="420"><small>Chick-fil-A</small><h3>Chicken Sandwich</h3><p><b>420</b> kcal<br><span class="dot"></span>29g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/pand-the-original-orange-chicken.jpg" alt="" width="420" height="420"><small>Panda Express</small><h3>The Original Orange Chicken</h3><p><b>560</b> kcal<br><span class="dot"></span>19g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/mcdo-double-quarter-pounder-with-cheese.jpg" alt="" width="420" height="420"><small>McDonald&#x27;s</small><h3>Double Quarter Pounder with Cheese</h3><p><b>740</b> kcal<br><span class="dot"></span>48g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/popey-chicken-sandwich-spicy.jpg" alt="" width="420" height="420"><small>Popeyes</small><h3>Spicy Chicken Sandwich</h3><p><b>700</b> kcal<br><span class="dot"></span>28g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/arbys-classic-roast-beef.jpg" alt="" width="420" height="420"><small>Arby&#x27;s</small><h3>Classic Roast Beef</h3><p><b>360</b> kcal<br><span class="dot"></span>23g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/five-little-bacon-cheeseburger.jpg" alt="" width="420" height="420"><small>Five Guys</small><h3>Little Bacon Cheeseburger</h3><p><b>690</b> kcal<br><span class="dot"></span>33g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/dunki-sourdough-breakfast-sandwich.jpg" alt="" width="420" height="420"><small>Dunkin&#x27;</small><h3>Sourdough Breakfast Sandwich</h3><p><b>630</b> kcal<br><span class="dot"></span>30g protein</p></article>
+        <article class="card" aria-hidden="true"><img src="food/burg-double-whopper.jpg" alt="" width="420" height="420"><small>Burger King</small><h3>Double Whopper</h3><p><b>980</b> kcal<br><span class="dot"></span>56g protein</p></article>
       </div></div>
   </section>
 
@@ -434,6 +434,31 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   }
   addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
   addEventListener('resize', tilt); tilt();
+  // Phones: the two food rows roll along by scrolling, one each way, and loop without a jump (the cards are in twice).
+  // A touch stops a row; it starts again a moment after you let go.
+  var small = matchMedia('(max-width: 820px)');
+  [].forEach.call(document.querySelectorAll('.belt'), function (belt) {
+    var track = belt.querySelector('.track'), dir = belt.classList.contains('rev') ? -1 : 1;
+    var pos = null, last = 0, held = false, waitUntil = 0, onScreen = false;
+    new IntersectionObserver(function (e) { onScreen = e[0].isIntersecting; }, { rootMargin: '200px' }).observe(belt);
+    belt.addEventListener('touchstart', function () { held = true; }, { passive: true });
+    function release() { held = false; waitUntil = performance.now() + 2200; pos = null; }
+    belt.addEventListener('touchend', release, { passive: true });
+    belt.addEventListener('touchcancel', release, { passive: true });
+    (function step(t) {
+      requestAnimationFrame(step);
+      var dt = Math.min(60, t - last); last = t;
+      if (!small.matches || !onScreen || held || t < waitUntil) { if (!small.matches) pos = null; return; }
+      // One full set of cards, measured from the cards themselves (never from the row's own width).
+      var cards = track.children, loop = cards.length > 1 ? cards[cards.length / 2].offsetLeft - cards[0].offsetLeft : 0;
+      if (!(loop > 0)) return;
+      if (pos === null) pos = belt.scrollLeft;
+      pos += dir * dt * 0.045;
+      if (pos >= loop) pos -= loop;
+      if (pos < 0) pos += loop;
+      belt.scrollLeft = pos;
+    })(0);
+  });
   function count(el) {
     var end = +el.dataset.n, t0 = performance.now();
     (function tick(t) {
