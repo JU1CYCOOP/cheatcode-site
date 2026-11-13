@@ -6,7 +6,7 @@
 <title>Support · CheatCode</title>
 <link rel="icon" type="image/png" href="icon.png">
 <style>
-:root { color-scheme: light; --ink: #0d0e11; --soft: #5b606b; --line: #e7e7ea; }
+:root { color-scheme: light; --ink: #0d0e11; --soft: #5b606b; --line: #e7e7ea; --box: #f5f6f8; }
 * { box-sizing: border-box; }
 body { margin: 0; background: #fff; color: var(--ink); font: 17px/1.55 -apple-system, "DM Sans", "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
 main { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
@@ -14,9 +14,17 @@ a { color: inherit; }
 .top { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
 .top img { width: 40px; height: 40px; border-radius: 10px; }
 h1 { font-size: 34px; line-height: 1.15; margin: 0 0 6px; }
-.date { color: var(--soft); font-size: 14px; margin: 0 0 28px; }
-h2 { font-size: 19px; margin: 26px 0 6px; }
-p { margin: 0; color: #2a2d34; }
+h1.part { font-size: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+.date { color: var(--soft); font-size: 14px; margin: 0 0 20px; }
+.contents { margin: 0 0 8px; padding: 0; list-style: none; font-size: 15px; }
+.contents li { margin: 4px 0; }
+h2 { font-size: 19px; line-height: 1.3; margin: 0 0 6px; }
+section { margin-top: 26px; overflow-wrap: anywhere; }
+section.key { background: var(--box); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+section.key p, section.key li { color: var(--ink); font-weight: 500; }
+p { margin: 0 0 10px; color: #2a2d34; }
+ul { margin: 0 0 10px; padding-left: 22px; color: #2a2d34; }
+li { margin: 4px 0; }
 nav { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 18px; font-size: 15px; color: var(--soft); }
 </style>
 </head>
@@ -26,14 +34,55 @@ nav { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); di
 <h1>Support</h1>
 
 <p>Email <a href="mailto:pocketera@gmail.com">pocketera@gmail.com</a> and we will get back to you.</p>
+<section id="contact-us">
 <h2>Contact us</h2>
-<p>Questions, a wrong number, a restaurant you want added: email pocketera@gmail.com. We answer every message.</p>
-<h2>Your subscription</h2>
-<p>Subscriptions are handled by Apple. To change or cancel, open Settings, Apple Account, Subscriptions on your iPhone. To get a plan back on a new phone, open CheatCode and tap Restore on the plans screen. Refunds are handled by Apple at reportaproblem.apple.com.</p>
+<p>Email <a href="mailto:pocketera@gmail.com">pocketera@gmail.com</a>. In the app, go to Settings, Contact us. Questions, a wrong number, a restaurant you want added or a problem with the app are all welcome.</p>
+<p>To help us fix a problem quickly, tell us the restaurant and item if it is about a number, and your iPhone model and iOS version if something is not working. A screenshot helps. We read every message and reply as soon as we can.</p>
+</section>
+<section id="plans-and-free-trial">
+<h2>Plans and free trial</h2>
+<p>CheatCode has two plans: Yearly at $29.99 a year with 3 days free for new subscribers, and Monthly at $9.99 a month. These are US prices; Apple shows the price in your country before you buy. Plans renew automatically until you cancel. To avoid being charged when the free days end, cancel at least 24 hours before they end.</p>
+</section>
+<section id="cancel-or-change-your-plan">
+<h2>Cancel or change your plan</h2>
+<p>Open Settings, Apple Account, Subscriptions on your iPhone, or in CheatCode go to Settings, Account, Manage or cancel subscription. Cancel at least 24 hours before the plan renews. Deleting the app does not cancel your plan. After you cancel, you keep access until the end of the time you paid for.</p>
+</section>
+<section id="restore-your-plan">
+<h2>Restore your plan</h2>
+<p>On a new or reset iPhone, sign in with the same Apple Account you subscribed with, open CheatCode and tap Restore on the plans screen. If a family organizer has to approve a purchase, the plan starts by itself once it is approved.</p>
+</section>
+<section id="refunds">
+<h2>Refunds</h2>
+<p>Apple handles all payments and refunds, so we cannot give refunds ourselves. To ask Apple for one, go to <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+</section>
+<section id="where-the-numbers-come-from">
 <h2>Where the numbers come from</h2>
-<p>From each restaurant&#x27;s own published nutrition information, as of the date shown in the app. A part a restaurant does not publish is a USDA estimate and is marked as one.</p>
+<p>From each restaurant's own published nutrition information, as of the date shown in the app. A part a restaurant does not publish is an estimate, usually from USDA FoodData Central, and is marked as one. Restaurants change recipes and portions, so always check with the restaurant if an exact number matters.</p>
+</section>
+<section id="a-wrong-number-or-a-missing-restaurant">
+<h2>A wrong number or a missing restaurant</h2>
+<p>Email <a href="mailto:pocketera@gmail.com">pocketera@gmail.com</a> with the restaurant and the item. We check the restaurant's own information and fix it in an update. To ask for a new restaurant, use Request a restaurant in search, or email us its name.</p>
+</section>
+<section id="nearby-restaurants-not-showing">
+<h2>Nearby restaurants not showing</h2>
+<p>CheatCode needs location to show the closest restaurants. Turn it on in your iPhone's Settings for CheatCode, under Location, and choose While Using the App. Distances and drive times come from Apple Maps.</p>
+</section>
+<section id="apple-health">
+<h2>Apple Health</h2>
+<p>Apple Health is optional. The app only reads your latest weight, and only if you turned it on in setup. It never writes to Health. To turn it off, use the Health app's privacy settings for apps.</p>
+</section>
+<section id="your-data">
+<h2>Your data</h2>
+<p>CheatCode has no accounts and collects nothing. Everything you enter stays on your phone. To start setup again, use Replay onboarding in Settings. Deleting the app deletes all of its data from your phone.</p>
+</section>
+<section id="allergies">
 <h2>Allergies</h2>
-<p>The app does not show allergen information. Always check ingredients with the restaurant.</p>
+<p>The app does not show allergen information. Always check ingredients with the restaurant before you order.</p>
+</section>
+<section id="legal">
+<h2>Legal</h2>
+<p>Read the Privacy Policy and the Terms of Use, which include the Nutrition &amp; Health Disclaimer and Trademarks &amp; Images, at the links below.</p>
+</section>
 <nav><a href="./">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></nav>
 </main>
 </body>
