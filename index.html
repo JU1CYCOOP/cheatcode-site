@@ -249,6 +249,7 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   @keyframes driftA { from { translate: 5px 4px; } to { translate: -5px -8px; } }
   @keyframes driftB { from { translate: -5px 4px; } to { translate: 5px -8px; } }
 }
+@media (min-width: 821px) { .track .x3 { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .belt { overflow-x: auto; }
   html { scroll-behavior: auto; }
@@ -481,29 +482,60 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   }
   addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
   addEventListener('resize', tilt); tilt();
-  // Phones: the two food rows roll along by scrolling, one each way, and loop without a jump (the cards are in twice).
-  // A touch stops a row; it starts again a moment after you let go.
+  // Phones: the food rows roll along by scrolling, one each way, and loop without a jump. A touch stops a row; it rolls
+  // again only once the row has fully stopped (a fast flick keeps gliding after the finger lifts, and moving the row
+  // during that glide made it fight the glide and jump: "the scrollable carousels start glitching when you go fast",
+  // 14 Nov 2026). A third copy of the cards on phones means a fast swipe either way never runs out of row.
   var small = matchMedia('(max-width: 820px)');
   [].forEach.call(document.querySelectorAll('.belt'), function (belt) {
     var track = belt.querySelector('.track'), dir = belt.classList.contains('rev') ? -1 : 1;
-    var pos = null, last = 0, held = false, waitUntil = 0, onScreen = false;
+    var half = track.children.length / 2;
+    for (var i = 0; i < half; i++) {
+      var c = track.children[i].cloneNode(true);
+      c.classList.add('x3'); c.setAttribute('aria-hidden', 'true');
+      track.appendChild(c);
+    }
+    var pos = null, last = 0, held = false, waitUntil = 0, onScreen = false, wrote = -1;
+    function loopLen() { var k = track.children; return half >= 1 ? k[half].offsetLeft - k[0].offsetLeft : 0; }
+    // Start in the middle copy, so there is a full set of cards on both sides.
+    requestAnimationFrame(function () { if (small.matches) { var l = loopLen(); if (l > 0) { belt.scrollLeft = l; wrote = belt.scrollLeft; } } });
     new IntersectionObserver(function (e) { onScreen = e[0].isIntersecting; }, { rootMargin: '200px' }).observe(belt);
-    belt.addEventListener('touchstart', function () { held = true; }, { passive: true });
-    function release() { held = false; waitUntil = performance.now() + 2200; pos = null; }
+    belt.addEventListener('touchstart', function () { held = true; pos = null; }, { passive: true });
+    function release() { held = false; pos = null; waitUntil = performance.now() + 1800; }
     belt.addEventListener('touchend', release, { passive: true });
     belt.addEventListener('touchcancel', release, { passive: true });
+    // A scroll this script did not make (a swipe, or the glide after one) keeps the row still until it stops.
+    // Once a swipe has fully stopped (no scroll for a moment), the row moves back to the same cards in the middle copy,
+    // so the next fast swipe either way never reaches an end. The cards are the same, so the move cannot be seen.
+    var settle = 0;
+    function recenter() {
+      if (held || !small.matches) return;
+      var loop = loopLen(); if (!(loop > 0)) return;
+      var x = belt.scrollLeft, y = x;
+      while (y < loop) y += loop;
+      while (y >= 2 * loop) y -= loop;
+      if (Math.abs(y - x) > 1) { belt.scrollLeft = y; wrote = belt.scrollLeft; }
+    }
+    belt.addEventListener('scroll', function () {
+      if (Math.abs(belt.scrollLeft - wrote) > 2) {
+        pos = null; waitUntil = Math.max(waitUntil, performance.now() + 1200);
+        clearTimeout(settle); settle = setTimeout(recenter, 260);
+      }
+    }, { passive: true });
     (function step(t) {
       requestAnimationFrame(step);
       var dt = Math.min(60, t - last); last = t;
       if (!small.matches || !onScreen || held || t < waitUntil) { if (!small.matches) pos = null; return; }
       // One full set of cards, measured from the cards themselves (never from the row's own width).
-      var cards = track.children, loop = cards.length > 1 ? cards[cards.length / 2].offsetLeft - cards[0].offsetLeft : 0;
+      var loop = loopLen();
       if (!(loop > 0)) return;
-      if (pos === null) pos = belt.scrollLeft;
+      // Kept in the middle copy: the jump of one whole set is invisible, the cards being the same.
+      if (pos === null) { pos = belt.scrollLeft; while (pos < loop) pos += loop; while (pos >= 2 * loop) pos -= loop; }
       pos += dir * dt * 0.045;
-      if (pos >= loop) pos -= loop;
-      if (pos < 0) pos += loop;
+      if (pos >= 2 * loop) pos -= loop;
+      if (pos < loop) pos += loop;
       belt.scrollLeft = pos;
+      wrote = belt.scrollLeft;
     })(0);
   });
   function count(el) {
