@@ -92,10 +92,11 @@ header.top { display: flex; align-items: center; justify-content: space-between;
 .card p b { color: var(--ink); font-size: 19px; font-variant-numeric: tabular-nums; }
 
 /* Phone with points */
-.how { padding: 76px 0; border-top: 1px solid var(--line); overflow: hidden; }
-.pair { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 64px; align-items: center; }
-.stand { padding: 20px 0; }
-.lean { --dir: -1; width: min(330px, 82%); margin: 0 auto; will-change: transform; transform: rotateY(26deg) rotateX(6deg) rotateZ(-4deg); }
+.how { padding: 76px 0; border-top: 1px solid var(--line); overflow: hidden; overflow: clip; }
+.pair { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+/* The phone starts level with the heading and stays in view while the long list scrolls past it. */
+.stand { padding: 20px 0; position: sticky; top: max(90px, calc(50vh - 380px)); }
+.lean { --dir: -1; width: min(330px, 82%, calc((100vh - 150px) / 2.3)); margin: 0 auto; will-change: transform; transform: rotateY(26deg) rotateX(6deg) rotateZ(-4deg); }
 .icons { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 30px; }
 .icons li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 20px; align-items: start; }
 .icons svg { margin-top: 2px; }
@@ -182,7 +183,7 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   .how { padding: 54px 0; }
   .pair { grid-template-columns: 1fr; gap: 26px; }
   /* Phones: the words come first here, so this moving phone is not stacked right under the two at the top. */
-  .pair > .stand { order: 2; }
+  .pair > .stand { order: 2; position: static; }
   .lean { width: 58%; }
   .band { padding-top: 60px; }
   .three { gap: 3%; margin-top: 44px; }
