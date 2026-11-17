@@ -24,12 +24,14 @@ header h1{margin:0;font-weight:500;font-size:57px;line-height:1;letter-spacing:-
 .hero{display:block;width:100%;aspect-ratio:16/8;object-fit:cover}
 .assets{padding:32px 40px}
 .pill{display:inline-flex;align-items:center;gap:8px;background:#111;color:#fff;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:500;text-decoration:none}
-.media{display:grid;grid-template-columns:2fr 1fr;gap:40px;padding:0 40px 120px;align-items:start}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
-.col{display:flex;flex-direction:column;gap:16px}
-.col img{width:100%;display:block}
+.media{display:grid;grid-template-columns:2fr 1fr;gap:48px;padding:0 40px 96px;align-items:start}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cols a{display:block}.cols img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.screens{background:#f2f2f0;padding:72px 40px;display:grid;grid-template-columns:repeat(3,minmax(0,330px));justify-content:center;gap:56px;margin:0 0 96px}
+.screens a{text-decoration:none;color:#111;font-size:15px;line-height:1.4;text-align:center}
+.screens img{display:block;width:100%;border-radius:36px;border:10px solid #111;margin-bottom:18px;box-shadow:0 18px 40px rgba(0,0,0,.12)}
 .col a{display:block}.col img{aspect-ratio:4/5;object-fit:cover;transition:opacity .2s}.col a:hover img{opacity:.9}
-.qa{font-size:15px;line-height:1.55;position:sticky;top:32px}
+.qa{font-size:15px;line-height:1.55}
 .qa h3{font-size:15px;font-weight:700;margin:0}
 .qa p{margin:0 0 26px}
 .body{max-width:640px;margin:0 auto 0 calc(33.33% + 13px);padding:0 40px 80px 0;font-size:18px;line-height:1.5}
@@ -50,9 +52,8 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
  .hero{aspect-ratio:4/3}
  .assets{padding:24px 20px}
  .media{grid-template-columns:1fr;padding:0 20px 60px}
- .cols{grid-template-columns:repeat(2,1fr);gap:10px}.col{gap:10px}
- .col{display:contents}.xmob{display:none!important}
- .qa{position:static}
+ .cols{grid-template-columns:repeat(2,1fr);gap:10px}
+ .screens{grid-template-columns:repeat(3,1fr);gap:12px;padding:32px 14px;margin-bottom:56px}.screens img{border-width:4px;border-radius:16px}.screens a{font-size:12px}
  .body{margin:0;padding:0 20px 60px;font-size:17px}
 }
 </style>
@@ -61,7 +62,7 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 <nav class="nav">
   <a class="brand" href="https://getcheatcode.app/"><img src="img/icon.png" alt="">CheatCode</a>
   <div class="links"><a href="https://getcheatcode.app/">App</a><a href="https://getcheatcode.app/support.html">Support</a><a class="on" href="https://getcheatcode.app/press/">Newsroom</a></div>
-  <div class="right">English</div>
+  <div class="right"></div>
 </nav>
 
 <header>
@@ -75,21 +76,12 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 
 <section class="media">
   <div class="cols">
-    <div class="col">
-      <a href="img/bowl.jpg"><img src="img/tile-bowl.jpg" alt="Burrito bowl with chicken and fajita veggies"></a>
-      <a href="img/02-restaurant-cheat-codes.png"><img src="img/tile-02-restaurant-cheat-codes.jpg" alt="Cheat codes at a restaurant"></a>
-      <a href="img/tile-quote-tailgate.jpg"><img src="img/tile-quote-tailgate.jpg" alt="Quote from Greg Cooper"></a>
-    </div>
-    <div class="col">
-      <a href="img/tile-quote-counter.jpg"><img src="img/tile-quote-counter.jpg" alt="Quote from Greg Cooper"></a>
-      <a href="img/stilllife.jpg"><img src="img/tile-stilllife.jpg" alt="Grilled chicken sandwich, side salad and iced coffee"></a>
-      <a href="img/05-how-to-order.png"><img src="img/tile-05-how-to-order.jpg" alt="Step-by-step ordering instructions"></a>
-    </div>
-    <div class="col">
-      <a href="img/03-order-page-numbers.png"><img src="img/tile-03-order-page-numbers.jpg" alt="An order with restaurant nutrition numbers"></a>
-      <a href="img/tile-quote-coffee.jpg"><img src="img/tile-quote-coffee.jpg" alt="Quote from Greg Cooper"></a>
-      <a href="img/hero.jpg" class="xmob"><img src="img/tile-hero.jpg" alt="Checking CheatCode at the drive-thru"></a>
-    </div>
+    <a href="img/tile-window.jpg"><img src="img/tile-window.jpg" alt="Phone in hand at the drive-thru"></a>
+    <a href="img/bowl.jpg"><img src="img/tile-bowl.jpg" alt="Burrito bowl with chicken and fajita veggies"></a>
+    <a href="img/counter.jpg"><img src="img/tile-counter.jpg" alt="Ordering at the counter"></a>
+    <a href="img/stilllife.jpg"><img src="img/tile-stilllife.jpg" alt="Grilled chicken sandwich, side salad and iced coffee"></a>
+    <a href="img/tailgate.jpg"><img src="img/tile-tailgate.jpg" alt="Lunch after the gym"></a>
+    <a href="img/coffee.jpg"><img src="img/tile-coffee.jpg" alt="Iced coffee"></a>
   </div>
   <aside class="qa">
     <h3>What is CheatCode?</h3>
@@ -103,6 +95,12 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
     <h3>When is it available?</h3>
     <p>CheatCode is available now for iPhone on the App Store.</p>
   </aside>
+</section>
+
+<section class="screens">
+  <a href="img/02-restaurant-cheat-codes.png"><img src="img/02-restaurant-cheat-codes.png" alt="Cheat codes at a restaurant"><span>Cheat codes, each with a match score</span></a>
+  <a href="img/03-order-page-numbers.png"><img src="img/03-order-page-numbers.png" alt="An order with restaurant nutrition numbers"><span>The restaurant's own numbers, with the source</span></a>
+  <a href="img/05-how-to-order.png"><img src="img/05-how-to-order.png" alt="Step-by-step ordering instructions"><span>The exact words to say at the counter</span></a>
 </section>
 
 <article class="body">
