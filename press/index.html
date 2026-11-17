@@ -29,7 +29,13 @@ header .meta button{background:none;border:0;color:#fff;font:inherit;padding:0;c
 .pill{display:inline-flex;align-items:center;gap:8px;background:#111;color:#fff;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:500;text-decoration:none}
 .media{display:grid;grid-template-columns:2fr 1fr;gap:32px;padding:0 40px 96px;align-items:stretch}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.cols a{display:block}.cols img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.cols a{display:block;position:relative}
+.cols a:has(.tag)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));pointer-events:none}
+.cols .tag{position:absolute;left:16px;bottom:14px;z-index:1;display:flex;flex-direction:column;line-height:1;color:#fff}
+.cols .tag b{font-size:30px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.cols .tag em{font-style:normal;font-size:20px;font-weight:600;margin-top:6px;opacity:.95}
+.cols .tag.after b{color:#7CE38B}
+@media (max-width:900px){.cols .tag{left:10px;bottom:10px}.cols .tag b{font-size:19px}.cols .tag em{font-size:14px;margin-top:4px}}.cols img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
 .screens{background:#f2f2f0;padding:72px 40px;display:grid;grid-template-columns:repeat(3,minmax(0,330px));justify-content:center;gap:56px;margin:0 0 96px}
 .screens a{text-decoration:none;color:#111;font-size:15px;line-height:1.4;text-align:center}
 .screens img{display:block;width:100%;border-radius:36px;border:10px solid #111;margin-bottom:18px;box-shadow:0 18px 40px rgba(0,0,0,.12)}
@@ -121,11 +127,11 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 
 <section class="media">
   <div class="cols">
-    <a href="launch/img/tile-window.jpg"><img src="launch/img/tile-window.jpg" alt="Phone in hand at the drive-thru"></a>
+    <a href="launch/img/tile-before.jpg?v=1"><img src="launch/img/tile-before.jpg?v=1" alt="Greg Cooper before CheatCode"><span class="tag before"><b>Before</b><em>220 lb</em></span></a>
+    <a href="launch/img/tile-after.jpg?v=1"><img src="launch/img/tile-after.jpg?v=1" alt="Greg Cooper after CheatCode, using the app"><span class="tag after"><b>After</b><em>175 lb</em></span></a>
     <a href="launch/img/bowl.jpg"><img src="launch/img/tile-bowl.jpg" alt="Burrito bowl with chicken and fajita veggies"></a>
-    <a href="launch/img/counter.jpg"><img src="launch/img/tile-counter.jpg" alt="Ordering at the counter"></a>
     <a href="launch/img/stilllife.jpg"><img src="launch/img/tile-stilllife.jpg" alt="Grilled chicken sandwich, side salad and iced coffee"></a>
-    <a href="launch/img/tailgate.jpg"><img src="launch/img/tile-tailgate.jpg" alt="Lunch after the gym"></a>
+    <a href="launch/img/tile-window.jpg"><img src="launch/img/tile-window.jpg" alt="Phone in hand at the drive-thru"></a>
     <a href="launch/img/coffee.jpg"><img src="launch/img/tile-coffee.jpg" alt="Iced coffee"></a>
   </div>
   <aside class="qa">
@@ -188,7 +194,7 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 <p>CheatCode is available now for iPhone on the <a href="https://apps.apple.com/app/id6832425448">App Store</a>, at $29.99 per year after a three-day free trial, or $9.99 per month. It requires no account and shows no ads.</p>
 <h2 id="story">How CheatCode Started</h2>
 <p>For a long time, getting healthy meant Greg Cooper stayed away from fast food completely.</p>
-<p>He was around 250 pounds when he decided to make a change, and the advice was always the same: cut out fast food. So he did. When friends asked if he wanted to grab a bite, he usually said no. When he was busy and the quick option was right there, he drove past it. It worked, but it never felt like something he could keep doing forever.</p>
+<p>He was around 220 pounds when he decided to make a change, and the advice was always the same: cut out fast food. So he did. When friends asked if he wanted to grab a bite, he usually said no. When he was busy and the quick option was right there, he drove past it. It worked, but it never felt like something he could keep doing forever.</p>
 <p>“I didn't want to be the guy who sits out every time someone says, ‘let's grab food,’” Cooper says. “I just wanted to know what I could actually order.”</p>
 <p>So he started digging. He read through restaurants' nutrition guides, figured out which orders fit his calories and protein, and wrote down exactly how to ask for each one. Leave off a sauce here, add a free vegetable there, pick the size that fits. He started calling them cheat codes.</p>
 <p>He got down to 175 pounds and has stayed there, without skipping the places everyone else was eating.</p>
