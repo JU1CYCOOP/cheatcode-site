@@ -38,6 +38,21 @@ header h1{margin:0;font-weight:500;font-size:57px;line-height:1;letter-spacing:-
 .body p{margin:0 0 27px}
 .body h2{font-size:18px;font-weight:700;margin:0 0 27px}
 .body .note{font-style:italic;font-weight:700}
+.reading{display:grid;grid-template-columns:1fr minmax(0,640px) 1fr;gap:56px;padding:0 40px 80px;align-items:start}
+.reading .body{margin:0;padding:0;max-width:none}
+.toc,.getcard{position:sticky;top:32px;font-size:14px;line-height:1.4}
+.toc{justify-self:end;width:200px;display:flex;flex-direction:column;gap:2px}
+.toc .lbl,.getcard .lbl{font-size:12px;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em}
+.toc a{text-decoration:none;color:#8a8a8a;padding:7px 0 7px 14px;border-left:2px solid #e6e6e6}
+.toc a.on{color:#111;border-left-color:#111;font-weight:500}
+.getcard{justify-self:start;width:260px;border:1px solid #e6e6e6;border-radius:18px;padding:22px}
+.getcard img{width:56px;height:56px;border-radius:13px;display:block;margin-bottom:12px}
+.getcard .t{font-weight:700;font-size:17px}.getcard .d{color:#666;margin:2px 0 16px}
+.getcard .btn{display:block;text-align:center;background:#111;color:#fff;border-radius:999px;padding:11px 10px;text-decoration:none;font-weight:500}
+.getcard .sub{text-align:center;color:#888;font-size:12px;margin-top:7px}
+.getcard hr{border:0;border-top:1px solid #eee;margin:18px 0}
+.getcard .lnk{display:block;color:#111;margin-bottom:14px;font-size:13px;white-space:nowrap}
+@media (max-width:1180px){.reading{grid-template-columns:minmax(0,640px);justify-content:center}.toc{display:none}.getcard{position:static;width:auto;max-width:640px}}
 .end{text-align:center;padding:40px 0 100px}
 .end img{width:36px;height:36px;border-radius:8px}
 .tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
@@ -54,7 +69,7 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
  .media{grid-template-columns:1fr;padding:0 20px 60px}
  .cols{grid-template-columns:repeat(2,1fr);gap:10px}
  .screens{grid-template-columns:repeat(3,1fr);gap:12px;padding:32px 14px;margin-bottom:56px}.screens img{border-width:4px;border-radius:16px}.screens a{font-size:12px}
- .body{margin:0;padding:0 20px 60px;font-size:17px}
+ .reading{padding:0 20px 60px;gap:32px}.body{font-size:17px}
 }
 </style>
 </head>
@@ -103,38 +118,60 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
   <a href="img/05-how-to-order.png"><img src="img/05-how-to-order.png" alt="Step-by-step ordering instructions"><span>The exact words to say at the counter</span></a>
 </section>
 
+<div class="reading">
+<nav class="toc" aria-label="On this page">
+  <div class="lbl">On this page</div>
+  <a href="#intro" data-s="intro">Overview</a>
+  <a href="#codes" data-s="codes">Cheat Codes</a>
+  <a href="#match" data-s="match">Match Percentage</a>
+  <a href="#yours" data-s="yours">Make It Yours</a>
+  <a href="#numbers" data-s="numbers">Restaurant Numbers</a>
+  <a href="#avail" data-s="avail">Availability</a>
+</nav>
 <article class="body">
-<p>The drive-thru just got a game plan.</p>
+<p id="intro">The drive-thru just got a game plan.</p>
 <p>For anyone cutting calories, building muscle or simply trying to eat better, restaurant meals have always meant guessing. CheatCode replaces the guess with an answer.</p>
 <p>Set a calorie and protein target once, and the app turns the menus at more than 50 national chains, from Chipotle and Chick-fil-A to Starbucks and Olive Garden, into orders that fit. Every order carries a match percentage showing how closely it lines up with those numbers, and the best matches come first.</p>
 <p>It is built for the moment before the meal, not after it. Open it in the parking lot or the line, pick an order, and read it out.</p>
 <p>“People don't fall off their goals at home. They fall off in the drive-thru, because nobody tells them what to order,” says Greg Cooper, founder of CheatCode. “We built CheatCode to be that answer, at the restaurants people already go to.”</p>
 
-<h2>Cheat Codes: Custom Orders Built Around Your Macros</h2>
+<h2 id="codes">Cheat Codes: Custom Orders Built Around Your Macros</h2>
 <p>CheatCode's nearly 500 cheat codes are custom orders built from regular menu items: a Subway roast beef with no mayo and every free vegetable on the line, a Chipotle bowl with a second scoop of fajita veggies, chicken fingers with hot sauce in place of the house sauce.</p>
 <p>Each one comes with step-by-step instructions, written in the restaurant's own words, so the order is as easy to say as it is to read.</p>
 <p>When someone needs more or less food, the order resizes using only portions the restaurant actually sells. A 6-inch becomes a Footlong. An 8-piece becomes a 12.</p>
 <p>“A cheat code is just a smarter way to order something you already like,” says Cooper.</p>
 
-<h2>Match Percentage: Every Order, Measured Against You</h2>
+<h2 id="match">Match Percentage: Every Order, Measured Against You</h2>
 <p>Two people can walk into the same restaurant and need completely different meals. CheatCode scores every order against each user's own calories and protein, and plans for high-protein, low-fat, keto and vegetarian eating change the results.</p>
 <p>Alongside the cheat codes, a second list ranks regular menu items that fit as they are, with nothing to change at the counter.</p>
 
-<h2>Make It Yours: Every Order, Adjusted in a Tap</h2>
+<h2 id="yours">Make It Yours: Every Order, Adjusted in a Tap</h2>
 <p>Any order can be made lighter or more filling, sized up or down, given a different side or milk, or topped up with more protein for the fewest extra calories, with the numbers updating as it changes.</p>
 <p>Orders combine into a plate that shows the total and one set of instructions for everything. Budget-friendly orders that use only free changes, seasonal and trending drink orders, and treats are each clearly marked. Nearby restaurants appear closest first, with estimated drive times.</p>
 <p>“Nobody orders exactly what's on the board,” says Cooper. “The app shouldn't make you.”</p>
 
-<h2>Restaurant Numbers: Sourced, Not Guessed</h2>
+<h2 id="numbers">Restaurant Numbers: Sourced, Not Guessed</h2>
 <p>Every figure in CheatCode comes from the restaurant's own published nutrition information, and the source is shown on every order.</p>
 <p>When a restaurant does not publish a part, such as a pump of syrup or a splash of milk, the app uses U.S. Department of Agriculture data and labels it as an estimate.</p>
 <p>“If a restaurant publishes a number, that's the number you see,” says Cooper. “If it doesn't, we say so.”</p>
 
-<p>Together, these pieces change when nutrition decisions happen. Traditional calorie apps ask people to log a meal after it's eaten. CheatCode helps them choose it before they order, at the places they were already going.</p>
+<p id="avail">Together, these pieces change when nutrition decisions happen. Traditional calorie apps ask people to log a meal after it's eaten. CheatCode helps them choose it before they order, at the places they were already going.</p>
 <p>CheatCode is available now for iPhone on the <a href="https://apps.apple.com/app/id6832425448">App Store</a>, at $29.99 per year after a three-day free trial, or $9.99 per month. It requires no account and shows no ads.</p>
 <p class="note">Screenshots, logos and the full press kit are available <a href="https://getcheatcode.app/press/">here</a>. Media inquiries: thecheatcodeteam@gmail.com.</p>
 <p><em>CheatCode is not affiliated with any restaurant named in this release.</em></p>
 </article>
+<aside class="getcard">
+  <img src="img/icon.png" alt="">
+  <div class="t">CheatCode</div>
+  <div class="d">Eat out. Hit your macros.</div>
+  <a class="btn" href="https://apps.apple.com/app/id6832425448">Download for iPhone</a>
+  <div class="sub">Free 3-day trial</div>
+  <hr>
+  <a class="lnk" href="https://getcheatcode.app/press/CheatCode-Press-Kit.zip">Press kit ↓</a>
+  <div class="lbl">Media contact</div>
+  <a class="lnk" href="mailto:thecheatcodeteam@gmail.com">thecheatcodeteam@gmail.com</a>
+</aside>
+</div>
 
 <div class="end">
   <img src="img/icon.png" alt="">
@@ -146,5 +183,11 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
   <div><a href="https://apps.apple.com/app/id6832425448">Download on the App Store</a><a href="https://getcheatcode.app/privacy.html">Privacy Policy</a><a href="https://getcheatcode.app/terms.html">Terms of Use</a></div>
   <div class="legal">© 2026 CheatCode. Eat out. Hit your macros.</div>
 </footer>
+<script>
+const links=[...document.querySelectorAll('.toc a')];
+const secs=links.map(a=>document.getElementById(a.dataset.s));
+function mark(){let i=0;secs.forEach((el,k)=>{if(el&&el.getBoundingClientRect().top<160)i=k});links.forEach((a,k)=>a.classList.toggle('on',k===i))}
+addEventListener('scroll',mark,{passive:true});mark();
+</script>
 </body>
 </html>
