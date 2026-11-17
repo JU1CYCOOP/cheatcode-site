@@ -57,6 +57,7 @@ header .meta button{background:none;border:0;color:#fff;font:inherit;padding:0;c
 .getcard hr{border:0;border-top:1px solid #eee;margin:18px 0}
 .getcard .lnk{display:block;color:#111;margin-bottom:14px;font-size:13px;white-space:nowrap}
 @media (max-width:1180px){.reading{grid-template-columns:minmax(0,640px);justify-content:center}.toc{display:none}.getcard{position:static;width:auto;max-width:640px}}
+.chips{display:none}
 .end{text-align:center;padding:40px 0 100px}
 .end img{width:36px;height:36px;border-radius:8px}
 .tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
@@ -65,16 +66,39 @@ footer{background:#111;color:#fff;padding:40px;font-size:13px;display:flex;justi
 footer div{display:flex;flex-direction:column;gap:8px}footer a{text-decoration:none}
 footer .legal{color:#8a8a8a;align-self:flex-end}
 @media (max-width:900px){
- .nav{padding:0 20px}.nav .links{display:none}.nav .right{margin-left:auto}
- header{padding:40px 20px 36px}
- .qa .q{padding:16px 18px}
- header h1{font-size:34px;line-height:1.08}
+ .nav{padding:0 16px}.nav .links{display:flex;gap:4px;margin:0 0 0 auto;font-size:14px}.nav .links a{padding:0 8px;min-height:44px;display:flex;align-items:center}.nav .right{display:none}
+ .nav .brand{min-height:44px}
+ header{padding:36px 20px 32px}
+ header h1{font-size:32px;line-height:1.1}
+ header .meta{flex-wrap:wrap;gap:4px 10px}
+ header .meta button{min-height:44px;padding:0 4px}
  .hero{aspect-ratio:2/1}
- .assets{padding:24px 20px}
- .media{grid-template-columns:1fr;padding:0 20px 60px}
+ .assets{padding:20px 20px}
+ .pill{min-height:44px}
+ .media{grid-template-columns:1fr;padding:0 20px 56px}
  .cols{grid-template-columns:repeat(2,1fr);gap:10px}
- .screens{grid-template-columns:repeat(3,1fr);gap:12px;padding:32px 14px;margin-bottom:56px}.screens img{border-width:4px;border-radius:16px}.screens a{font-size:12px}
- .reading{padding:0 20px 60px;gap:32px}.body{font-size:17px}
+ .qa .q{padding:16px 18px}
+ .screens{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding:32px 20px 28px;margin-bottom:48px;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .screens::-webkit-scrollbar{display:none}
+ .screens a{flex:0 0 66%;scroll-snap-align:center;font-size:14px}
+ .screens img{border-width:6px;border-radius:26px}
+ .reading{display:block;padding:0 20px 56px}
+ .chips{display:flex;position:sticky;top:0;z-index:5;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px 24px;padding:10px 20px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #eee}
+ .chips::-webkit-scrollbar{display:none}
+ .chips a{flex:none;display:flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:#f2f2f0;color:#555;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+ .chips a.on{background:#111;color:#fff}
+ .body{font-size:17px;line-height:1.62}
+ .body h2{font-size:21px;margin:40px 0 14px;scroll-margin-top:80px}
+ .body p[id]{scroll-margin-top:80px}
+ .reading .getcard{position:static;display:block;width:100%;max-width:none;justify-self:stretch;margin-top:8px;padding:22px}
+ .getcard .btn{min-height:48px;display:flex;align-items:center;justify-content:center}
+ .getcard .lnk{display:flex;align-items:center;min-height:44px;margin:0;font-size:15px}
+ .getcard .lbl{margin:8px 0 0}
+ .tags span{padding:8px 14px}
+ footer{flex-direction:column;gap:4px;padding:28px 20px}
+ footer div{gap:0}
+ footer a{display:flex;align-items:center;min-height:44px;font-size:15px}
+ footer .legal{align-self:flex-start;margin-top:12px}
 }
 </style>
 </head>
@@ -120,6 +144,9 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 </section>
 
 <div class="reading">
+<nav class="chips" aria-label="On this page">
+  <a href="#intro" data-s="intro">Overview</a><a href="#codes" data-s="codes">Cheat Codes</a><a href="#match" data-s="match">Match</a><a href="#yours" data-s="yours">Make It Yours</a><a href="#numbers" data-s="numbers">Numbers</a><a href="#avail" data-s="avail">Availability</a><a href="#story" data-s="story">How It Started</a>
+</nav>
 <nav class="toc" aria-label="On this page">
   <div class="lbl">On this page</div>
   <a href="#intro" data-s="intro">Overview</a>
@@ -135,7 +162,7 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 <p>For anyone cutting calories, building muscle or simply trying to eat better, restaurant meals have always meant guessing. CheatCode replaces the guess with an answer.</p>
 <p>Set a calorie and protein target once, and the app turns the menus at more than 50 national chains, from Chipotle and Chick-fil-A to Starbucks and Olive Garden, into orders that fit. Every order carries a match percentage showing how closely it lines up with those numbers, and the best matches come first.</p>
 <p>It is built for the moment before the meal, not after it. Open it in the parking lot or the line, pick an order, and read it out.</p>
-<p>“People don't fall off their goals at home. They fall off in the drive-thru, because nobody tells them what to order,” says Greg Cooper, founder of CheatCode. “We built CheatCode to be that answer, at the restaurants people already go to.”</p>
+<p>“For a long time, staying in shape meant I just didn't go to fast food places, even when my friends did,” says Greg Cooper, founder of CheatCode. “I built CheatCode so nobody has to make that trade. Whether you're out with a friend or just need something quick, there should be an order that works for you.”</p>
 
 <h2 id="codes">Cheat Codes: Custom Orders Built Around Your Macros</h2>
 <p>CheatCode's nearly 500 cheat codes are custom orders built from regular menu items: a Subway roast beef with no mayo and every free vegetable on the line, a Chipotle bowl with a second scoop of fajita veggies, chicken fingers with hot sauce in place of the house sauce.</p>
@@ -160,11 +187,12 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 <p id="avail">Together, these pieces change when nutrition decisions happen. Traditional calorie apps ask people to log a meal after it's eaten. CheatCode helps them choose it before they order, at the places they were already going.</p>
 <p>CheatCode is available now for iPhone on the <a href="https://apps.apple.com/app/id6832425448">App Store</a>, at $29.99 per year after a three-day free trial, or $9.99 per month. It requires no account and shows no ads.</p>
 <h2 id="story">How CheatCode Started</h2>
-<p>CheatCode started with one person trying to lose weight without giving up the restaurants he liked.</p>
-<p>At about 250 pounds, Greg Cooper kept running into the same advice: stop eating fast food. He didn't want to. So instead of changing where he ate, he changed what he ordered.</p>
-<p>He went through restaurants' published nutrition guides, worked out which orders fit his calories and protein, and wrote down exactly how to ask for each one. Leave off a sauce here, add a free vegetable there, pick the size that fits. He started calling them cheat codes.</p>
-<p>He lost about 75 pounds that way. Today he weighs 175.</p>
-<p>CheatCode puts that same approach in an app, for anyone who wants to eat out and still reach their goals.</p>
+<p>For a long time, getting healthy meant Greg Cooper stayed away from fast food completely.</p>
+<p>He was around 250 pounds when he decided to make a change, and the advice was always the same: cut out fast food. So he did. When friends asked if he wanted to grab a bite, he usually said no. When he was busy and the quick option was right there, he drove past it. It worked, but it never felt like something he could keep doing forever.</p>
+<p>“I didn't want to be the guy who sits out every time someone says, ‘let's grab food,’” Cooper says. “I just wanted to know what I could actually order.”</p>
+<p>So he started digging. He read through restaurants' nutrition guides, figured out which orders fit his calories and protein, and wrote down exactly how to ask for each one. Leave off a sauce here, add a free vegetable there, pick the size that fits. He started calling them cheat codes.</p>
+<p>He got down to 175 pounds and has stayed there, without skipping the places everyone else was eating.</p>
+<p>That's why he built CheatCode. Whether you're meeting a friend or just need something fast on the way home, there should be something on the menu that works for you, at every chain in the app.</p>
 <p class="note">Screenshots, logos and the full press kit are available <a href="https://getcheatcode.app/press/">here</a>. Media inquiries: thecheatcodeteam@gmail.com.</p>
 <p><em>CheatCode is not affiliated with any restaurant named in this release.</em></p>
 </article>
@@ -192,9 +220,9 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
   <div class="legal">© 2026 CheatCode. Eat out. Hit your macros.</div>
 </footer>
 <script>
-const links=[...document.querySelectorAll('.toc a')];
+const links=[...document.querySelectorAll('.toc a')], chipsEl=document.querySelector('.chips'), chipLinks=[...document.querySelectorAll('.chips a')];
 const secs=links.map(a=>document.getElementById(a.dataset.s));
-function mark(){let i=0;secs.forEach((el,k)=>{if(el&&el.getBoundingClientRect().top<160)i=k});links.forEach((a,k)=>a.classList.toggle('on',k===i))}
+function mark(){let i=0;secs.forEach((el,k)=>{if(el&&el.getBoundingClientRect().top<160)i=k});links.forEach((a,k)=>a.classList.toggle('on',k===i));chipLinks.forEach((a,k)=>{const on=k===i;if(on&&!a.classList.contains('on')&&getComputedStyle(chipsEl).display!='none')chipsEl.scrollTo({left:a.offsetLeft-20,behavior:'smooth'});a.classList.toggle('on',on)})}
 addEventListener('scroll',mark,{passive:true});mark();
 </script>
 </body>
