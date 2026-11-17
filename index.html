@@ -49,6 +49,12 @@ h3 { font-weight: 800; font-size: 17px; line-height: 1.2; }
 .bar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
 .mark { font-weight: 900; font-size: 20px; text-decoration: none; }
+.links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; font-weight: 600; }
+.links a { text-decoration: none; color: var(--soft); }
+.links a:hover { color: var(--ink); }
+.top .pill.away { width: 0; padding-left: 0; padding-right: 0; margin-left: -16px; overflow: hidden; }
+@media (max-width: 560px) { .mark { font-size: 17px; } .top.dl .links { display: none; } .links { gap: 16px; font-size: 14px; } .top .long { display: none; } .top .pill { padding: 10px 16px; font-size: 14px; } }
+
 .pill.away { opacity: 0; transform: translateY(-6px); visibility: hidden; pointer-events: none; }
 .pill { transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; font-size: 16px; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 999px; background: var(--fat); color: var(--ink); box-shadow: 0 6px 18px rgba(35,135,63,0.25); white-space: nowrap; }
 .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--fat); color: var(--ink); font-weight: 700; font-size: 19px; text-decoration: none; padding: 20px 36px; border-radius: 16px; box-shadow: 0 10px 28px rgba(35,135,63,0.28); transition: transform 0.2s ease; }
@@ -260,7 +266,8 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
 <div class="bar"><div class="wrap">
   <header class="top">
     <a class="mark" href="#top">CheatCode</a>
-    <a class="pill" href="https://apps.apple.com/app/id6832425448">Download for iPhone</a>
+    <nav class="links" aria-label="Site"><a href="https://apps.apple.com/app/id6832425448">App</a><a href="press/">Newsroom</a><a href="support.html">Support</a></nav>
+    <a class="pill" href="https://apps.apple.com/app/id6832425448">Download<span class="long"> for iPhone</span></a>
   </header>
 </div></div>
 
@@ -553,7 +560,7 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
 (function () {
   var pill = document.querySelector('.top .pill'), hero = document.querySelector('.hero .btn');
   if (!pill || !hero || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(function (e) { pill.classList.toggle('away', e[0].isIntersecting); }, { rootMargin: '-70px 0px 0px 0px' }).observe(hero);
+  new IntersectionObserver(function (e) { pill.classList.toggle('away', e[0].isIntersecting); pill.parentNode.classList.toggle('dl', !e[0].isIntersecting); }, { rootMargin: '-70px 0px 0px 0px' }).observe(hero);
 })();
 </script>
 </body>

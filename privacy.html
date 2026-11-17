@@ -13,6 +13,12 @@ main { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
 a { color: inherit; }
 .top { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
 .top img { width: 40px; height: 40px; border-radius: 10px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.topbar .top { margin-bottom: 0; }
+.links { display: flex; gap: 20px; font-size: 15px; font-weight: 600; }
+.links a { text-decoration: none; color: var(--soft); }
+.links a.on, .links a:hover { color: var(--ink); }
+@media (max-width: 420px) { .links { gap: 14px; font-size: 14px; } .top img { width: 32px; height: 32px; } }
 h1 { font-size: 34px; line-height: 1.15; margin: 0 0 6px; }
 h1.part { font-size: 28px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
 .date { color: var(--soft); font-size: 14px; margin: 0 0 20px; }
@@ -30,7 +36,7 @@ nav { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); di
 </head>
 <body>
 <main>
-<a class="top" href="./"><img src="icon.png" alt="">CheatCode</a>
+<div class="topbar"><a class="top" href="./"><img src="icon.png" alt="">CheatCode</a><div class="links" role="navigation" aria-label="Site"><a href="https://apps.apple.com/app/id6832425448">App</a><a href="press/">Newsroom</a><a href="support.html">Support</a></div></div>
 <h1>Privacy Policy</h1>
 <p class="date">Effective November 14, 2026 · North Cove Wellness LLC</p>
 <section id="summary-of-data-practices">
