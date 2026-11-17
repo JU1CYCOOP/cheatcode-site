@@ -28,8 +28,8 @@ header h1{margin:0;font-weight:500;font-size:57px;line-height:1;letter-spacing:-
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
 .col{display:flex;flex-direction:column;gap:16px}
 .col img{width:100%;display:block}
-.col img.shot{background:#f2f2f2;padding:18px 18px 0;object-fit:cover;object-position:top;aspect-ratio:4/5}
-.qa{font-size:15px;line-height:1.55}
+.col a{display:block}.col img{aspect-ratio:4/5;object-fit:cover;transition:opacity .2s}.col a:hover img{opacity:.9}
+.qa{font-size:15px;line-height:1.55;position:sticky;top:32px}
 .qa h3{font-size:15px;font-weight:700;margin:0}
 .qa p{margin:0 0 26px}
 .body{max-width:640px;margin:0 auto 0 calc(33.33% + 13px);padding:0 40px 80px 0;font-size:18px;line-height:1.5}
@@ -51,7 +51,8 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
  .assets{padding:24px 20px}
  .media{grid-template-columns:1fr;padding:0 20px 60px}
  .cols{grid-template-columns:repeat(2,1fr);gap:10px}.col{gap:10px}
- .col.c3{display:none}
+ .col{display:contents}.xmob{display:none!important}
+ .qa{position:static}
  .body{margin:0;padding:0 20px 60px;font-size:17px}
 }
 </style>
@@ -75,21 +76,19 @@ footer .legal{color:#8a8a8a;align-self:flex-end}
 <section class="media">
   <div class="cols">
     <div class="col">
-      <img src="img/bowl.jpg" alt="Burrito bowl with chicken and fajita veggies">
-      <img class="shot" src="img/02-restaurant-cheat-codes.png" alt="CheatCode cheat codes at a restaurant">
-      <img src="img/quote-1.jpg" alt="Quote from Greg Cooper">
-      <img src="img/tailgate.jpg" alt="Man eating a sub after the gym">
+      <a href="img/bowl.jpg"><img src="img/tile-bowl.jpg" alt="Burrito bowl with chicken and fajita veggies"></a>
+      <a href="img/02-restaurant-cheat-codes.png"><img src="img/tile-02-restaurant-cheat-codes.jpg" alt="Cheat codes at a restaurant"></a>
+      <a href="img/tile-quote-tailgate.jpg"><img src="img/tile-quote-tailgate.jpg" alt="Quote from Greg Cooper"></a>
     </div>
     <div class="col">
-      <img src="img/counter.jpg" alt="Woman checking her phone in line at a restaurant">
-      <img src="img/quote-2.jpg" alt="Quote from Greg Cooper">
-      <img src="img/stilllife.jpg" alt="Grilled chicken sandwich, side salad and iced coffee">
-      <img class="shot" src="img/05-how-to-order.png" alt="Step-by-step ordering instructions">
+      <a href="img/tile-quote-counter.jpg"><img src="img/tile-quote-counter.jpg" alt="Quote from Greg Cooper"></a>
+      <a href="img/stilllife.jpg"><img src="img/tile-stilllife.jpg" alt="Grilled chicken sandwich, side salad and iced coffee"></a>
+      <a href="img/05-how-to-order.png"><img src="img/tile-05-how-to-order.jpg" alt="Step-by-step ordering instructions"></a>
     </div>
-    <div class="col c3">
-      <img class="shot" src="img/03-order-page-numbers.png" alt="An order with the restaurant's own nutrition numbers">
-      <img src="img/coffee.jpg" alt="Iced coffee">
-      <img src="img/quote-3.jpg" alt="Quote from Greg Cooper">
+    <div class="col">
+      <a href="img/03-order-page-numbers.png"><img src="img/tile-03-order-page-numbers.jpg" alt="An order with restaurant nutrition numbers"></a>
+      <a href="img/tile-quote-coffee.jpg"><img src="img/tile-quote-coffee.jpg" alt="Quote from Greg Cooper"></a>
+      <a href="img/hero.jpg" class="xmob"><img src="img/tile-hero.jpg" alt="Checking CheatCode at the drive-thru"></a>
     </div>
   </div>
   <aside class="qa">
