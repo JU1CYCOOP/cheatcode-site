@@ -227,5 +227,7 @@ const secs=links.map(a=>document.getElementById(a.dataset.s));
 function mark(){let i=0;secs.forEach((el,k)=>{if(el&&el.getBoundingClientRect().top<160)i=k});links.forEach((a,k)=>a.classList.toggle('on',k===i));chipLinks.forEach((a,k)=>{const on=k===i;if(on&&!a.classList.contains('on')&&getComputedStyle(chipsEl).display!='none')chipsEl.scrollTo({left:a.offsetLeft-20,behavior:'smooth'});a.classList.toggle('on',on)})}
 addEventListener('scroll',mark,{passive:true});mark();
 </script>
+<script>/* App Store campaign tag: App Store Connect counts downloads per source (ct). Nothing is stored about the person. */
+(function(){try{var q=new URLSearchParams(location.search),k='cc_ct',c=q.get('utm_source');if(c){c=(c+(q.get('utm_campaign')?'_'+q.get('utm_campaign'):'')).replace(/[^A-Za-z0-9_-]/g,'').slice(0,40);sessionStorage.setItem(k,c);}c=sessionStorage.getItem(k)||'site';document.querySelectorAll('a[href*="apps.apple.com/app/id6832425448"]').forEach(function(a){a.href='https://apps.apple.com/app/apple-store/id6832425448?pt=129764972&ct='+encodeURIComponent(c)+'&mt=8';});}catch(e){}})();</script>
 </body>
 </html>

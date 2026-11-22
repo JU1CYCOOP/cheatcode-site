@@ -563,5 +563,7 @@ footer { padding: 26px 0 48px; color: var(--soft); font-size: 14px; display: fle
   new IntersectionObserver(function (e) { pill.classList.toggle('away', e[0].isIntersecting); pill.parentNode.classList.toggle('dl', !e[0].isIntersecting); }, { rootMargin: '-70px 0px 0px 0px' }).observe(hero);
 })();
 </script>
+<script>/* App Store campaign tag: App Store Connect counts downloads per source (ct). Nothing is stored about the person. */
+(function(){try{var q=new URLSearchParams(location.search),k='cc_ct',c=q.get('utm_source');if(c){c=(c+(q.get('utm_campaign')?'_'+q.get('utm_campaign'):'')).replace(/[^A-Za-z0-9_-]/g,'').slice(0,40);sessionStorage.setItem(k,c);}c=sessionStorage.getItem(k)||'site';document.querySelectorAll('a[href*="apps.apple.com/app/id6832425448"]').forEach(function(a){a.href='https://apps.apple.com/app/apple-store/id6832425448?pt=129764972&ct='+encodeURIComponent(c)+'&mt=8';});}catch(e){}})();</script>
 </body>
 </html>
